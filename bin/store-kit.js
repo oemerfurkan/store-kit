@@ -33,11 +33,23 @@ const COMMANDS = {
     subscriptions: 'asc/push-subscriptions.js',
     pricing: 'asc/push-pricing.js',
     screenshots: 'asc/push-screenshots.js',
+    'review-details': 'asc/push-review-details.js',
+    'age-rating': 'asc/push-age-rating.js',
+    categories: 'asc/push-categories.js',
+    release: 'asc/push-release.js',
+    offers: 'asc/offers.js',
+    reviews: 'asc/reviews.js',
     verify: 'asc/verify.js',
     submit: 'asc/submit.js',
     fastlane: 'asc/fastlane-export.js',
     values: 'asc/values.js',
-    push: ['asc/push-metadata.js', 'asc/push-subscriptions.js', 'asc/push-pricing.js'],
+    push: [
+      'asc/push-metadata.js',
+      'asc/push-categories.js',
+      'asc/push-review-details.js',
+      'asc/push-subscriptions.js',
+      'asc/push-pricing.js',
+    ],
   },
   play: {
     whoami: 'play/whoami.js',
@@ -45,6 +57,8 @@ const COMMANDS = {
     images: 'play/push-images.js',
     subscriptions: 'play/push-subscriptions.js',
     pricing: 'play/push-pricing.js',
+    release: 'play/release.js',
+    reviews: 'play/reviews.js',
     verify: 'play/verify.js',
     push: [
       'play/push-listing.js',
@@ -69,11 +83,17 @@ App Store Connect
   asc subscriptions     subscription and group localizations
   asc pricing           per-territory subscription prices from store/pricing.json
   asc screenshots       upload store/screenshots
+  asc review-details    reviewer contact, demo account and notes. --pull captures live
+  asc age-rating        the 29 question age rating declaration. --pull captures live
+  asc categories        primary and secondary category. --list ids, --pull captures live
+  asc release           release type, copyright, and phased release control
+  asc offers            introductory offers, i.e. the free trial. --apply creates missing
+  asc reviews           customer reviews across every storefront. --reply <id> --text "…"
   asc verify            read every field back and diff it against the local files
   asc submit            create a review submission and submit it
   asc values            render store/ASC-VALUES.md for the fields the API cannot set
   asc fastlane          export store/ into a fastlane metadata tree
-  asc push              metadata, then subscriptions, then pricing
+  asc push              metadata, categories, review details, subscriptions, pricing
 
 Google Play
   play whoami           what the service account can see: tracks, listings, subscriptions
@@ -81,6 +101,8 @@ Google Play
   play images           icon, feature graphic, phone screenshots
   play subscriptions    subscriptions, base plans and the free trial offer
   play pricing          per-region prices from store/pricing.json
+  play release          tracks and staged rollout. --rollout, --halt, --promote
+  play reviews          user reviews. --reply <id> --text "…"
   play verify           read every field back and diff it against the local files
   play push             listing, then images, then subscriptions, then pricing
 

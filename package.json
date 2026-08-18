@@ -1,6 +1,6 @@
 {
   "name": "@omerfurkan/store-kit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Push App Store Connect and Google Play listings, subscriptions and per-territory prices from one set of JSON files.",
   "keywords": [
     "app-store-connect",

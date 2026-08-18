@@ -27,6 +27,12 @@ so it is not a zero-install option either, while Node is already in every React 
 | screenshots and artwork | `asc screenshots` | `play images` |
 | subscriptions and localizations | `asc subscriptions` | `play subscriptions` |
 | per-territory prices | `asc pricing` | `play pricing` |
+| age rating questionnaire | `asc age-rating` | n/a |
+| reviewer contact, demo account, notes | `asc review-details` | n/a |
+| categories | `asc categories` | |
+| release type, phased release, rollout | `asc release` | `play release` |
+| free trial / introductory offers | `asc offers` | `play subscriptions` |
+| customer reviews and replies | `asc reviews` | `play reviews` |
 | read everything back and diff | `asc verify` | `play verify` |
 | what the credential can see | `asc whoami` | `play whoami` |
 | submit for review | `asc submit` | |
@@ -37,6 +43,19 @@ a valid Turkish subtitle look two characters too long. `store-kit check prices` 
 stores and puts what Apple and Google actually charge side by side.
 
 Every push command takes `--dry-run`, which plans every write and sends none.
+
+The three App Store forms that were console-only until somebody wired them up (age rating,
+reviewer details, categories) each take `--pull`, which reads what is live and writes it into
+`store/metadata.json`. Start there rather than retyping twenty nine age rating answers from
+memory: a config file that quietly disagrees with the app it describes is worse than no
+config file. Reviewer phone, email and demo password are deliberately never written to the
+file and come from `ASC_REVIEW_CONTACT_PHONE`, `ASC_REVIEW_CONTACT_EMAIL` and
+`ASC_DEMO_ACCOUNT_PASSWORD` instead, because a private repo can be opened later.
+
+What it still does not do: upload binaries, and App Privacy. The binary belongs to EAS or
+the console. App Privacy is not a gap here but in the API: `/v1/appDataUsages` returns "the
+resource does not exist" and `app` carries no privacy relationship, so there is nothing to
+call. That was measured, not assumed.
 
 ## The one file
 
