@@ -1,5 +1,5 @@
 {
-  "name": "store-kit",
+  "name": "@omerfurkan/store-kit",
   "version": "1.0.0",
   "description": "Push App Store Connect and Google Play listings, subscriptions and per-territory prices from one set of JSON files.",
   "keywords": [
@@ -31,6 +31,9 @@
   ],
   "engines": {
     "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "lint": "node --check bin/store-kit.js && node -e \"require('node:fs').readdirSync('src',{recursive:true}).filter(f=>f.endsWith('.js')).forEach(f=>require('node:child_process').execFileSync(process.execPath,['--check','src/'+f]))\" && echo 'syntax ok'"

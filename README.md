@@ -4,10 +4,13 @@ Push App Store Connect and Google Play listings, subscriptions and per-territory
 one set of JSON files in your app repo. No Ruby, no fastlane, no dependencies.
 
 ```bash
-npm i -D store-kit
+npm i -D @omerfurkan/store-kit
 npx store-kit check store
 npx store-kit asc push
 ```
+
+Without installing, the scope is part of the name: `npx @omerfurkan/store-kit asc whoami`.
+Once it is a dependency, `npx store-kit` resolves to the local binary and the scope drops off.
 
 ## Why this exists
 
