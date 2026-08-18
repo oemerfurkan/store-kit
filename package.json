@@ -1,0 +1,38 @@
+{
+  "name": "store-kit",
+  "version": "1.0.0",
+  "description": "Push App Store Connect and Google Play listings, subscriptions and per-territory prices from one set of JSON files.",
+  "keywords": [
+    "app-store-connect",
+    "google-play",
+    "aso",
+    "subscriptions",
+    "pricing"
+  ],
+  "homepage": "https://github.com/oemerfurkan/store-kit#readme",
+  "bugs": {
+    "url": "https://github.com/oemerfurkan/store-kit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oemerfurkan/store-kit.git"
+  },
+  "license": "MIT",
+  "author": "Ömer Furkan Yürük",
+  "bin": {
+    "store-kit": "bin/store-kit.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "templates",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "lint": "node --check bin/store-kit.js && node -e \"require('node:fs').readdirSync('src',{recursive:true}).filter(f=>f.endsWith('.js')).forEach(f=>require('node:child_process').execFileSync(process.execPath,['--check','src/'+f]))\" && echo 'syntax ok'"
+  }
+}

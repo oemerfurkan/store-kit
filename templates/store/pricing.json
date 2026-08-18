@@ -1,0 +1,72 @@
+{
+  "_comment": "Per-territory subscription pricing. A territory is priced either by `factor`, a multiplier on the price the store would have charged on its own, or by an explicit `price` in local currency. Keys starting with an underscore are notes and are never sent anywhere. The handful of territories below are examples of the two shapes, not a recommendation: pick your own.",
+
+  "_method": [
+    "Both stores already convert the US price into every currency and call the result an",
+    "equalization. That conversion is close to a pure exchange rate plus local tax, so it",
+    "lands at the same number of dollars everywhere and therefore at wildly different",
+    "shares of local income. One dollar figure is a coffee in one country and most of a",
+    "day's wage in another.",
+    "",
+    "So `factor` multiplies the store's own equalized price rather than the dollar amount.",
+    "The push script reads the equalization for each territory, multiplies, and then picks",
+    "the nearest real price point at or below the result. Currency, rounding and tax stay",
+    "the store's problem, which is the only way this stays correct when rates move.",
+    "",
+    "A good starting point for the factor is the World Bank price level index, US = 1.00:",
+    "what a fixed basket of goods costs locally as a share of what it costs in the United",
+    "States. That is the same quantity that makes one price feel different in two places.",
+    "",
+    "It should not stay only that. The index measures rent, food, transport, a haircut.",
+    "Digital subscriptions do not follow that curve, and in several markets the index is",
+    "years behind the currency. Where a factor disagrees with what people in that market",
+    "already pay for a comparable subscription, write the price you mean with `price` and",
+    "say why in a `_note`, rather than bending the factor until it lands there."
+  ],
+
+  "base": {
+    "territory": "USA",
+    "monthlyUSD": 9.99,
+    "annualUSD": 59.99,
+    "_note": "Never written by the push script: set it in the store once. Annual is derived from each territory's own monthly price using annualDiscount, so this ratio is reproduced everywhere."
+  },
+
+  "annualDiscount": 0.5,
+  "_annualDiscountNote": "Annual costs this share of twelve monthly payments. 0.5 is a 50 percent saving, which is a much stronger pull to the yearly plan than the usual two-months-free.",
+
+  "invariants": {
+    "annualShareOfTwelveMonthly": { "min": 0.42, "max": 0.62 },
+    "_note": "Checked after the fact, because a derived target still has to snap to a real price point and a sparse ladder can move it. A backstop, not the mechanism."
+  },
+
+  "minimumMonthlyUSD": 0.59,
+  "_minimumNote": "No territory goes below this in dollar terms. Under it the store's own fees eat the transaction and the price stops signalling that the product is worth anything.",
+
+  "territories": {
+    "XXX": {
+      "price": { "currency": "XXX", "monthly": 0 },
+      "market": "A market you price by hand",
+      "_note": "Explicit rather than a factor. Use this shape where the price level index lags the local currency, or where what people already pay for a comparable subscription disagrees with what the factor produces. Replace the code, currency and amount; this entry is a shape, not a value."
+    },
+    "IND": {
+      "factor": 0.15,
+      "market": "India"
+    },
+    "IDN": {
+      "factor": 0.33,
+      "market": "Indonesia"
+    },
+    "POL": {
+      "factor": 0.58,
+      "market": "Poland"
+    },
+    "JPN": {
+      "factor": 0.71,
+      "market": "Japan"
+    }
+  },
+
+  "notes": {
+    "_comment": "Free text per territory code, printed by the verifier beside that territory. Use it for facts that outlive you remembering them, e.g. a store that cannot take payments in a market at all."
+  }
+}

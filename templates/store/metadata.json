@@ -1,0 +1,94 @@
+{
+  "_comment": "Everything both stores need, in one file. Top level keys that carry a `name` are locales; store-kit finds them that way, so adding a language means adding a block. Keys starting with an underscore are notes and are never sent anywhere.",
+
+  "shared": {
+    "bundleId": "__BUNDLE_ID__",
+    "androidPackage": "__ANDROID_PACKAGE__",
+    "sku": "__SLUG__",
+    "primaryCategory": "",
+    "secondaryCategory": "",
+    "supportUrl": "",
+    "marketingUrl": "",
+    "privacyPolicyUrl": "",
+    "termsOfUseUrl": "",
+    "copyright": "",
+    "availability": "All territories",
+    "appleId": "",
+    "_appleIdNote": "Numeric App Store id. Not needed to push, useful in generated docs and links."
+  },
+
+  "play": {
+    "_comment": "ASC locale -> Play locale. A locale block with no entry here is not sent to Play.",
+    "defaultLanguage": "en-US",
+    "contactEmail": "",
+    "contactWebsite": "",
+    "category": "",
+    "locales": {
+      "en-US": "en-US"
+    }
+  },
+
+  "en-US": {
+    "_locale": "English (U.S.)",
+    "name": "__APP_NAME__",
+    "subtitle": "",
+    "promotionalText": "",
+    "keywords": "",
+    "description": "",
+    "whatsNew": "",
+    "play": {
+      "shortDescription": ""
+    }
+  },
+
+  "inAppPurchases": {
+    "_comment": "Product ids are permanent: neither store lets one be renamed or reused once created, and RevenueCat holds the same string. `term` drives everything else, including the Play base plan id, which defaults to `<term>-autorenew`.",
+    "subscriptionGroupName": "",
+    "trialOffer": {
+      "days": 7,
+      "_offerIdNote": "Defaults to free-trial-<days>d. Part of the RevenueCat identifier on Play, so set it explicitly if the catalog already names one."
+    },
+    "products": [
+      {
+        "productId": "",
+        "term": "monthly",
+        "duration": "1 month",
+        "priceUSD": 0,
+        "introductoryOffer": "7 day free trial, new subscribers",
+        "play": {
+          "_note": "Optional. basePlanId defaults to `monthly-autorenew`, period to P1M."
+        },
+        "localizations": {
+          "en-US": { "displayName": "", "description": "" }
+        },
+        "reviewNote": ""
+      },
+      {
+        "productId": "",
+        "term": "annual",
+        "duration": "1 year",
+        "priceUSD": 0,
+        "introductoryOffer": "7 day free trial, new subscribers",
+        "localizations": {
+          "en-US": { "displayName": "", "description": "" }
+        },
+        "reviewNote": ""
+      }
+    ],
+    "subscriptionGroupLocalizations": {
+      "en-US": ""
+    }
+  },
+
+  "appPrivacy": {
+    "_comment": "What the app collects, for the App Privacy questionnaire.",
+    "dataCollected": [],
+    "notCollected": [],
+    "tracking": "This app does not track users."
+  },
+
+  "reviewNotes": {
+    "_comment": "Shown to the reviewer. Say how to reach the paid surface without an account.",
+    "text": ""
+  }
+}
